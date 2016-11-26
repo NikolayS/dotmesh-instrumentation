@@ -11,6 +11,7 @@ services:
     volumes:
       - /elasticsearch:/usr/share/elasticsearch/data
     network_mode: bridge
+    container_name: elasticsearch
   logstash:
     build: logstash/
     command: -f /etc/logstash/conf.d/
@@ -20,7 +21,10 @@ services:
       - "5000:5000"
     depends_on:
       - elasticsearch
+    links:
+      - elasticsearch
     network_mode: bridge
+    container_name: logstash
   kibana:
     build: kibana/
     volumes:
@@ -29,4 +33,7 @@ services:
       - "5601:5601"
     depends_on:
       - elasticsearch
+    links:
+      - elasticsearch
     network_mode: bridge
+    container_name: kibana
