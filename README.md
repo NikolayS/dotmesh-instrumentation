@@ -7,7 +7,7 @@ First, grab some creds for etcd:
 
 ```
 mkdir -p ~/.datamesh
-scp user@cluster-node:~/.datamesh/pki ~/.datamesh/
+scp -r user@cluster-node:~/.datamesh/pki ~/.datamesh/
 ```
 
 Start the stack by running:
