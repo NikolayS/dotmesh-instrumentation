@@ -59,3 +59,8 @@ services:
       # - JAVA_OPTS=-verbose:gc -Xms1G -Xmx1G
     depends_on:
       - storage
+
+networks:
+  default:
+    external:
+      name: bridge
