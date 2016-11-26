@@ -6,7 +6,8 @@ All run in Docker Compose.
 First, grab some creds for etcd:
 
 ```
-mkdir ~/.datamesh && scp user@cluster-node:~/.datamesh/pki ~/.datamesh/
+mkdir -p ~/.datamesh
+scp user@cluster-node:~/.datamesh/pki ~/.datamesh/
 ```
 
 Start the stack by running:
