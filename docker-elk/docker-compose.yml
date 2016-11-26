@@ -10,6 +10,7 @@ services:
       ES_JAVA_OPTS: "-Xms1g -Xmx1g"
     volumes:
       - /elasticsearch:/usr/share/elasticsearch/data
+    network_mode: bridge
   logstash:
     build: logstash/
     command: -f /etc/logstash/conf.d/
@@ -19,6 +20,7 @@ services:
       - "5000:5000"
     depends_on:
       - elasticsearch
+    network_mode: bridge
   kibana:
     build: kibana/
     volumes:
@@ -27,8 +29,4 @@ services:
       - "5601:5601"
     depends_on:
       - elasticsearch
-
-networks:
-  default:
-    external:
-      name: bridge
+    network_mode: bridge

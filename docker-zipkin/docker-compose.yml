@@ -16,6 +16,7 @@ services:
       - 3306:3306
     volumes:
       - /mysql:/var/lib/mysql
+    network_mode: bridge
 
   # The zipkin process services the UI, and also exposes a POST endpoint that
   # instrumentation can send trace data to. Scribe is enabled by default.
@@ -40,6 +41,7 @@ services:
       - 9411:9411
     depends_on:
       - storage
+    network_mode: bridge
 
   # Adds a cron to process spans since midnight every hour, and all spans each day
   # This data is served by http://192.168.99.100:8080/dependency
@@ -59,8 +61,4 @@ services:
       # - JAVA_OPTS=-verbose:gc -Xms1G -Xmx1G
     depends_on:
       - storage
-
-networks:
-  default:
-    external:
-      name: bridge
+    network_mode: bridge
