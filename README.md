@@ -13,7 +13,7 @@ scp -r user@cluster-node:~/.datamesh/pki ~/.datamesh/
 Start the stack by running:
 
 ```
-./launch.sh password
+./launch.sh password ip-of-cluster-node
 ```
 
 This will make available ports:
