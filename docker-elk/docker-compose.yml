@@ -12,6 +12,7 @@ services:
       - /elasticsearch:/usr/share/elasticsearch/data
     network_mode: bridge
     container_name: elasticsearch
+    restart: always
   logstash:
     build: logstash/
     command: -f /etc/logstash/conf.d/
@@ -25,6 +26,7 @@ services:
       - elasticsearch
     network_mode: bridge
     container_name: logstash
+    restart: always
   kibana:
     build: kibana/
     volumes:
@@ -37,3 +39,4 @@ services:
       - elasticsearch
     network_mode: bridge
     container_name: kibana
+    restart: always

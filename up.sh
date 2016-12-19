@@ -12,12 +12,12 @@ if [ "$ETCD" == "" ]; then
 	exit 1
 fi
 
-docker rm -f auth-etcd-browser auth-zipkin auth-kibana etcd-browser
+./down.sh
 
 (cd docker-elk && docker-compose up -d)
 (cd docker-zipkin && docker-compose up -d)
 (cd etcd-browser && docker build -t etcd-browser . && \
-    docker run -d -v /home:/home \
+    docker run --restart=always -d -v /home:/home \
         --name etcd-browser -p 0.0.0.0:8000:8000 \
         --env ETCD_HOST=$ETCD -e ETCD_PORT=42379 \
         -e ETCDCTL_CA_FILE=~/.datamesh/pki-remote/ca.pem \
@@ -26,7 +26,7 @@ docker rm -f auth-etcd-browser auth-zipkin auth-kibana etcd-browser
         -t -i etcd-browser)
 # Local etcd
 (cd etcd-browser && docker build -t etcd-browser . && \
-    docker run -d -v /home:/home \
+    docker run --restart=always -d -v /home:/home \
         --name etcd-browser-local -p 0.0.0.0:8001:8000 \
         --env ETCD_HOST=172.17.0.1 -e ETCD_PORT=42379 \
         -e ETCDCTL_CA_FILE=~/.datamesh/pki/ca.pem \
@@ -47,7 +47,9 @@ ARGS2="-e FORWARD_PORT=9411 --link zipkin:web             -p 82:80 --name auth-z
 ARGS3="-e FORWARD_PORT=5601 --link kibana:web             -p 83:80 --name auth-kibana"
 ARGS4="-e FORWARD_PORT=8001 --link etcd-browser-local:web -p 84:80 --name auth-etcd-browser-local"
 
-docker run -d -e HTPASSWD="$HTPASSWD" $ARGS1 beevelop/nginx-basic-auth
-docker run -d -e HTPASSWD="$HTPASSWD" $ARGS2 beevelop/nginx-basic-auth
-docker run -d -e HTPASSWD="$HTPASSWD" $ARGS3 beevelop/nginx-basic-auth
-docker run -d -e HTPASSWD="$HTPASSWD" $ARGS4 beevelop/nginx-basic-auth
+docker run --restart=always -d -e HTPASSWD="$HTPASSWD" $ARGS1 beevelop/nginx-basic-auth
+docker run --restart=always -d -e HTPASSWD="$HTPASSWD" $ARGS2 beevelop/nginx-basic-auth
+docker run --restart=always -d -e HTPASSWD="$HTPASSWD" $ARGS3 beevelop/nginx-basic-auth
+docker run --restart=always -d -e HTPASSWD="$HTPASSWD" $ARGS4 beevelop/nginx-basic-auth
+
+docker run --restart=always -d -p 80:5000 --name registry registry
