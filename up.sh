@@ -37,6 +37,7 @@ fi
 HTPASSWD=$(docker run --rm -ti --entrypoint htpasswd crosbymichael/htpasswd -nb admin $PASSWORD)
 
 # Ports:
+# - registry 80
 # - etcd-browser 8000 => 81
 # - zipkin 9411 => 82
 # - kibana 5601 => 83
