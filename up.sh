@@ -28,7 +28,7 @@ fi
 (cd etcd-browser && docker build -t etcd-browser . && \
     docker run --restart=always -d -v /home:/home \
         --name etcd-browser-local -p 0.0.0.0:8001:8000 \
-        --env ETCD_HOST=$(hostname) -e ETCD_PORT=42379 \
+        --env ETCD_HOST=$(hostname) --add-host="$(hostname):172.17.0.1" -e ETCD_PORT=42379 \
         -e ETCDCTL_CA_FILE=~/.datamesh/pki/ca.pem \
         -e ETCDCTL_KEY_FILE=~/.datamesh/pki/apiserver-key.pem \
         -e ETCDCTL_CERT_FILE=~/.datamesh/pki/apiserver.pem \
