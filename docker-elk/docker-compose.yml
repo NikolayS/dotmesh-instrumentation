@@ -9,7 +9,7 @@ services:
     environment:
       ES_JAVA_OPTS: "-Xms1g -Xmx1g"
     volumes:
-      - /elasticsearch:/usr/share/elasticsearch/data
+      - elk-elasticsearch:/usr/share/elasticsearch/data
     network_mode: bridge
     container_name: elasticsearch
     restart: always
