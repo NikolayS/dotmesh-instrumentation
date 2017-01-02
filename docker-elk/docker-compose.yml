@@ -40,3 +40,7 @@ services:
     network_mode: bridge
     container_name: kibana
     restart: always
+
+volumes:
+  elk-elasticsearch:
+    driver: local
