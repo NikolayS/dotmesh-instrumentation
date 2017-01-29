@@ -15,7 +15,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - /mysql:/var/lib/mysql
+      - zipkin-mysql:/var/lib/mysql
     network_mode: bridge
     restart: always
 
@@ -69,3 +69,7 @@ services:
       - storage
     network_mode: bridge
     restart: always
+
+volumes:
+  zipkin-mysql:
+    driver: local
