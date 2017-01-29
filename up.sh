@@ -15,7 +15,7 @@ fi
 ./down.sh
 
 (cd docker-elk && docker-compose up -d)
-(cd docker-zipkin && docker-compose up -d)
+#(cd docker-zipkin && docker-compose up -d)
 (cd etcd-browser && docker build -t etcd-browser . && \
     docker run --restart=always -d -v /home:/home \
         --name etcd-browser -p 0.0.0.0:8000:8000 \
@@ -53,4 +53,4 @@ docker run --restart=always -d -e HTPASSWD="$HTPASSWD" $ARGS2 beevelop/nginx-bas
 docker run --restart=always -d -e HTPASSWD="$HTPASSWD" $ARGS3 beevelop/nginx-basic-auth
 docker run --restart=always -d -e HTPASSWD="$HTPASSWD" $ARGS4 beevelop/nginx-basic-auth
 
-docker run --restart=always -d -p 80:5000 --name registry registry
+docker run --restart=always -d -p 80:5000 -v /registry:/var/lib/registry --name registry registry:2
