@@ -36,4 +36,4 @@ docker run --restart=always -d -e HTPASSWD="$HTPASSWD" $ARGS2 beevelop/nginx-bas
 docker run --restart=always -d -e HTPASSWD="$HTPASSWD" $ARGS3 beevelop/nginx-basic-auth
 #docker run --restart=always -d -e HTPASSWD="$HTPASSWD" $ARGS4 beevelop/nginx-basic-auth
 
-docker run --restart=always -d -p 80:5000 -v /registry:/var/lib/registry --name registry registry:2
+#docker run --restart=always -d -p 80:5000 -v /registry:/var/lib/registry --name registry registry:2
