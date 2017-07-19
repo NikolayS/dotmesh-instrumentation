@@ -15,7 +15,7 @@ fi
 ./down.sh
 
 (cd docker-elk && docker-compose up -d)
-(cd docker-zipkin && docker-compose up -d)
+#(cd docker-zipkin && docker-compose up -d)
 
 HTPASSWD=$(docker run --rm -ti --entrypoint htpasswd crosbymichael/htpasswd -nb admin $PASSWORD)
 
