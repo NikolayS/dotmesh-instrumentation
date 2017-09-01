@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 PASSWORD=$1
 if [ "$PASSWORD" == "" ]; then
