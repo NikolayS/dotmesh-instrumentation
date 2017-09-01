@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 (cd docker-elk && docker-compose down)
 (cd docker-zipkin && docker-compose down)
