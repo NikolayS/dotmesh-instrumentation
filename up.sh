@@ -6,7 +6,7 @@ if [ "$PASSWORD" == "" ]; then
 	exit 1
 fi
 
-ETCD=$2
+ETCD=datamesh-etcd
 if [ "$ETCD" == "" ]; then
 	echo "Please specify IP of a datamesh cluster node as the second argument."
 	exit 1
@@ -18,6 +18,7 @@ fi
 (cd docker-zipkin && docker-compose up -d)
 (cd etcd-browser && docker build -t etcd-browser . && \
 	docker run --restart=always -d -v $HOME:/root \
+        --link datamesh-etcd:datamesh-etcd \
 		--name etcd-browser -p 0.0.0.0:8000:8000 \
 		--env ETCD_HOST=$ETCD -e ETCD_PORT=42379 \
 		-e ETCDCTL_CA_FILE=/root/.datamesh/pki/ca.pem \
