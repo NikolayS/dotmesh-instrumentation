@@ -26,7 +26,7 @@ fi
 		-e ETCDCTL_CERT_FILE=/root/.datamesh/pki/apiserver.pem \
 		-t -i etcd-browser)
 
-HTPASSWD=$(docker run --rm -ti --entrypoint htpasswd crosbymichael/htpasswd -nb admin $PASSWORD)
+HTPASSWD=$(docker run --rm -ti --entrypoint htpasswd crosbymichael/htpasswd -nb admin "$PASSWORD")
 
 # Ports:
 # - registry 80
