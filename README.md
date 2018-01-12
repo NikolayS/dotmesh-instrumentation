@@ -1,4 +1,4 @@
-# datamesh-instrumentation
+# dotmesh-instrumentation
 
 ELK stack, Zipkin, and etcd-ui.
 All run in Docker Compose.
@@ -6,8 +6,8 @@ All run in Docker Compose.
 First, grab some creds for etcd:
 
 ```
-mkdir -p ~/.datamesh
-scp -r user@cluster-node:~/.datamesh/pki ~/.datamesh/
+mkdir -p ~/.dotmesh
+scp -r user@cluster-node:~/.dotmesh/pki ~/.dotmesh/
 ```
 
 Start the stack by running:

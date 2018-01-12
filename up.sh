@@ -8,7 +8,7 @@ fi
 
 #ETCD=$2
 #if [ "$ETCD" == "" ]; then
-#	echo "Please specify IP of a datamesh cluster node as the second argument."
+#	echo "Please specify IP of a dotmesh cluster node as the second argument."
 #	exit 1
 #fi
 
