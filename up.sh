@@ -27,7 +27,7 @@ HTPASSWD=$(docker run --rm -ti --entrypoint htpasswd crosbymichael/htpasswd -nb 
 # - etcd-browser-local 8001 => 84
 
 #ARGS1="-e FORWARD_PORT=8000 --link etcd-browser:web       -p 81:80 --name auth-etcd-browser"
-ARGS2="-e FORWARD_PORT=9411 --link zipkin:web             -p 82:80 --name auth-zipkin"
+#ARGS2="-e FORWARD_PORT=9411 --link zipkin:web             -p 82:80 --name auth-zipkin"
 ARGS3="-e FORWARD_PORT=5601 --link kibana:web             -p 83:80 --name auth-kibana"
 #ARGS4="-e FORWARD_PORT=8001 --link etcd-browser-local:web -p 84:80 --name auth-etcd-browser-local"
 
